@@ -1,0 +1,1072 @@
+  [1m[36m (2.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (3.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateSearches (20160515224922)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "searches" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "query_params" text, "user_id" integer, "user_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_searches_on_user_id" ON "searches" ("user_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515224922"]]
+  [1m[36m (2.3ms)[0m  [1mcommit transaction[0m
+Migrating to CreateBookmarks (20160515224923)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "bookmarks" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "user_type" varchar, "document_id" varchar, "document_type" varchar, "title" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_bookmarks_on_user_id" ON "bookmarks" ("user_id")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bookmarks_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bookmarks_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_bookmarks_on_document_id" ON "bookmarks" ("document_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515224923"]]
+  [1m[35m (2.1ms)[0m  commit transaction
+Migrating to AddPolymorphicTypeToBookmarks (20160515224924)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bookmarks_on_document_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bookmarks_on_document_id' AND type='index'
+
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bookmarks_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bookmarks_on_user_id' AND type='index'
+[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515224924"]]
+  [1m[36m (2.3ms)[0m  [1mcommit transaction[0m
+Migrating to DeviseCreateUsers (20160515224931)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.3ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515224931"]]
+  [1m[35m (2.4ms)[0m  commit transaction
+Migrating to AddDeviseGuestsToUsers (20160515224934)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "guest" boolean DEFAULT 'f'
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515224934"]]
+  [1m[35m (2.5ms)[0m  commit transaction
+Migrating to CreateFriendlyIdSlugs (20160515224942)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "friendly_id_slugs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "slug" varchar NOT NULL, "sluggable_id" integer NOT NULL, "sluggable_type" varchar(50), "scope" varchar, "created_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_friendly_id_slugs_on_sluggable_id" ON "friendly_id_slugs" ("sluggable_id")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_friendly_id_slugs_on_sluggable_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_friendly_id_slugs_on_sluggable_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_friendly_id_slugs_on_slug_and_sluggable_type" ON "friendly_id_slugs" ("slug", "sluggable_type")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_friendly_id_slugs_on_slug_and_sluggable_type' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_friendly_id_slugs_on_slug_and_sluggable_type' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_friendly_id_slugs_on_sluggable_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_friendly_id_slugs_on_sluggable_id' AND type='index'
+[0m
+  [1m[35m (0.4ms)[0m  CREATE UNIQUE INDEX "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope" ON "friendly_id_slugs" ("slug", "sluggable_type", "scope")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_friendly_id_slugs_on_slug_and_sluggable_type' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_friendly_id_slugs_on_slug_and_sluggable_type' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_friendly_id_slugs_on_sluggable_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_friendly_id_slugs_on_sluggable_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_friendly_id_slugs_on_sluggable_type" ON "friendly_id_slugs" ("sluggable_type")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515224942"]]
+  [1m[35m (2.6ms)[0m  commit transaction
+Migrating to CreateVersions (20160515224945)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "versions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "item_type" varchar NOT NULL, "item_id" integer NOT NULL, "event" varchar NOT NULL, "whodunnit" varchar, "object" text(1073741823), "created_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_versions_on_item_type_and_item_id" ON "versions" ("item_type", "item_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515224945"]]
+  [1m[36m (2.2ms)[0m  [1mcommit transaction[0m
+Migrating to DeviseInvitableAddToUsers (20160515224959)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "users" ADD "invitation_token" varchar[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "users" ADD "invitation_created_at" datetime
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "users" ADD "invitation_sent_at" datetime[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "users" ADD "invitation_accepted_at" datetime
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "users" ADD "invitation_limit" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "invited_by_id" integer
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "users" ADD "invited_by_type" varchar[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "invitations_count" integer DEFAULT 0
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_users_on_invitations_count" ON "users" ("invitations_count")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_invitations_count' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_invitations_count' AND type='index'
+
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.3ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_invitation_token" ON "users" ("invitation_token")[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_invitation_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_invitation_token' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_invitations_count' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_invitations_count' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_users_on_invited_by_id" ON "users" ("invited_by_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515224959"]]
+  [1m[35m (2.5ms)[0m  commit transaction
+Migrating to CreateSpotlightPages (20160515225001)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "spotlight_pages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "type" varchar, "slug" varchar, "scope" varchar, "content" text, "weight" integer DEFAULT 50, "published" boolean, "exhibit_id" integer, "created_by_id" integer, "last_edited_by_id" integer, "created_at" datetime, "updated_at" datetime, "parent_page_id" integer, "display_sidebar" boolean, "display_title" boolean) 
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_spotlight_pages_on_exhibit_id" ON "spotlight_pages" ("exhibit_id")[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_pages_on_exhibit_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_pages_on_exhibit_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_spotlight_pages_on_parent_page_id" ON "spotlight_pages" ("parent_page_id")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_pages_on_parent_page_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_pages_on_parent_page_id' AND type='index'
+
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_pages_on_exhibit_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_pages_on_exhibit_id' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m  CREATE UNIQUE INDEX "index_spotlight_pages_on_slug_and_scope" ON "spotlight_pages" ("slug", "scope")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515225001"]]
+  [1m[35m (2.3ms)[0m  commit transaction
+Migrating to CreateSpotlightAttachments (20160515225002)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "spotlight_attachments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "file" varchar, "uid" varchar, "exhibit_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515225002"]]
+  [1m[35m (2.3ms)[0m  commit transaction
+Migrating to CreateExhibits (20160515225003)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "spotlight_exhibits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar NOT NULL, "subtitle" varchar, "slug" varchar, "description" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.3ms)[0m  [1mCREATE UNIQUE INDEX "index_spotlight_exhibits_on_slug" ON "spotlight_exhibits" ("slug")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225003"]]
+  [1m[36m (5.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateRoles (20160515225004)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "spotlight_roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "exhibit_id" integer, "user_id" integer, "role" varchar) [0m
+  [1m[35m (0.4ms)[0m  CREATE UNIQUE INDEX "index_spotlight_roles_on_exhibit_id_and_user_id" ON "spotlight_roles" ("exhibit_id", "user_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515225004"]]
+  [1m[35m (2.8ms)[0m  commit transaction
+Migrating to CreateSpotlightSearches (20160515225005)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "spotlight_searches" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "slug" varchar, "scope" varchar, "short_description" text, "long_description" text, "query_params" text, "weight" integer, "on_landing_page" boolean, "featured_image" varchar, "exhibit_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "index_spotlight_searches_on_exhibit_id" ON "spotlight_searches" ("exhibit_id")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_searches_on_exhibit_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_searches_on_exhibit_id' AND type='index'
+
+  [1m[36m (0.4ms)[0m  [1mCREATE UNIQUE INDEX "index_spotlight_searches_on_slug_and_scope" ON "spotlight_searches" ("slug", "scope")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225005"]]
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateSpotlightBlacklightConfigurations (20160515225006)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "spotlight_blacklight_configurations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "exhibit_id" integer, "facet_fields" text, "index_fields" text, "search_fields" text, "sort_fields" text, "default_solr_params" text, "show" text, "index" text, "default_per_page" integer, "per_page" text, "document_index_view_types" text, "thumbnail_size" varchar, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225006"]]
+  [1m[36m (2.5ms)[0m  [1mcommit transaction[0m
+Migrating to ActsAsTaggableOnMigration (20160515225007)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "tags" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar) [0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "taggings" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "tag_id" integer, "taggable_id" varchar, "taggable_type" varchar, "tagger_id" integer, "tagger_type" varchar, "context" varchar(128), "created_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_taggings_on_tag_id" ON "taggings" ("tag_id")[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_taggings_on_tag_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_taggings_on_tag_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_taggings_on_taggable_id_and_taggable_type_and_context" ON "taggings" ("taggable_id", "taggable_type", "context")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225007"]]
+  [1m[36m (2.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddMissingUniqueIndices (20160515225008)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE UNIQUE INDEX "index_tags_on_name" ON "tags" ("name")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_taggings_on_taggable_id_and_taggable_type_and_context' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_taggings_on_taggable_id_and_taggable_type_and_context' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_taggings_on_tag_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_taggings_on_tag_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  DROP INDEX "index_taggings_on_tag_id"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_taggings_on_taggable_id_and_taggable_type_and_context' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_taggings_on_taggable_id_and_taggable_type_and_context' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  DROP INDEX "index_taggings_on_taggable_id_and_taggable_type_and_context"
+  [1m[36m (0.1ms)[0m  [1mCREATE UNIQUE INDEX "taggings_idx" ON "taggings" ("tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225008"]]
+  [1m[36m (2.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateSpotlightCustomFields (20160515225009)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "spotlight_custom_fields" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "exhibit_id" integer, "slug" varchar, "field" varchar, "configuration" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225009"]]
+  [1m[36m (2.4ms)[0m  [1mcommit transaction[0m
+Migrating to CreateSpotlightSolrDocumentSidecars (20160515225010)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "spotlight_solr_document_sidecars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "exhibit_id" integer, "solr_document_id" varchar, "public" boolean DEFAULT 't', "data" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_spotlight_solr_document_sidecars_on_exhibit_id" ON "spotlight_solr_document_sidecars" ("exhibit_id")
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_solr_document_sidecars_on_exhibit_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_solr_document_sidecars_on_exhibit_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_spotlight_solr_document_sidecars_on_solr_document_id" ON "spotlight_solr_document_sidecars" ("solr_document_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515225010"]]
+  [1m[35m (2.5ms)[0m  commit transaction
+Migrating to CreateContacts (20160515225011)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "spotlight_contacts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "slug" varchar, "name" varchar, "email" varchar, "title" varchar, "location" varchar, "telephone" varchar, "show_in_sidebar" boolean, "weight" integer DEFAULT 50, "exhibit_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "index_spotlight_contacts_on_exhibit_id" ON "spotlight_contacts" ("exhibit_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225011"]]
+  [1m[36m (2.5ms)[0m  [1mcommit transaction[0m
+Migrating to CreateContactEmails (20160515225012)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "spotlight_contact_emails" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "exhibit_id" integer, "email" varchar DEFAULT '' NOT NULL, "confirmation_token" varchar, "confirmed_at" datetime, "confirmation_sent_at" datetime, "unconfirmed_email" varchar, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.9ms)[0m  CREATE UNIQUE INDEX "index_spotlight_contact_emails_on_email_and_exhibit_id" ON "spotlight_contact_emails" ("email", "exhibit_id")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_contact_emails_on_email_and_exhibit_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_contact_emails_on_email_and_exhibit_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE UNIQUE INDEX "index_spotlight_contact_emails_on_confirmation_token" ON "spotlight_contact_emails" ("confirmation_token")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515225012"]]
+  [1m[35m (2.5ms)[0m  commit transaction
+Migrating to CreateResources (20160515225013)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "spotlight_resources" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "exhibit_id" integer, "type" varchar, "url" varchar, "data" text, "indexed_at" datetime, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515225013"]]
+  [1m[35m (2.5ms)[0m  commit transaction
+Migrating to ChangeFeaturedImageToFeaturedImageId (20160515225014)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TEMPORARY TABLE "aspotlight_searches" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "slug" varchar, "scope" varchar, "short_description" text, "long_description" text, "query_params" text, "weight" integer, "on_landing_page" boolean, "featured_image" varchar, "exhibit_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_searches_on_slug_and_scope' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_searches_on_slug_and_scope' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_searches_on_exhibit_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_searches_on_exhibit_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "tindex_aspotlight_searches_on_slug_and_scope" ON "aspotlight_searches" ("slug", "scope")[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "tindex_aspotlight_searches_on_exhibit_id" ON "aspotlight_searches" ("exhibit_id")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spotlight_searches"[0m
+  [1m[35m (0.4ms)[0m  DROP TABLE "spotlight_searches"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "spotlight_searches" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "slug" varchar, "scope" varchar, "short_description" text, "long_description" text, "query_params" text, "weight" integer, "on_landing_page" boolean, "exhibit_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_aspotlight_searches_on_exhibit_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_aspotlight_searches_on_exhibit_id' AND type='index'
+
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_aspotlight_searches_on_slug_and_scope' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_aspotlight_searches_on_slug_and_scope' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_spotlight_searches_on_exhibit_id" ON "spotlight_searches" ("exhibit_id")
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_searches_on_exhibit_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_searches_on_exhibit_id' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m  CREATE UNIQUE INDEX "index_spotlight_searches_on_slug_and_scope" ON "spotlight_searches" ("slug", "scope")
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "aspotlight_searches"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "aspotlight_searches"
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "spotlight_searches" ADD "featured_item_id" varchar[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225014"]]
+  [1m[36m (2.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateSpotlightMainNavigations (20160515225015)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "spotlight_main_navigations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "label" varchar, "weight" integer DEFAULT 20, "nav_type" varchar, "exhibit_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_spotlight_main_navigations_on_exhibit_id" ON "spotlight_main_navigations" ("exhibit_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515225015"]]
+  [1m[35m (2.6ms)[0m  commit transaction
+Migrating to CreateLocks (20160515225016)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "spotlight_locks" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "on_id" integer, "on_type" varchar, "by_id" integer, "by_type" varchar, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "index_spotlight_locks_on_on_id_and_on_type" ON "spotlight_locks" ("on_id", "on_type")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225016"]]
+  [1m[36m (2.4ms)[0m  [1mcommit transaction[0m
+Migrating to ChangeContactDetails (20160515225017)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "spotlight_contacts" ADD "contact_info" text[0m
+Scoped order and limit are ignored, it's forced to be batch order and batch size
+  [1m[35mSpotlight::Contact Load (0.1ms)[0m  SELECT  "spotlight_contacts".* FROM "spotlight_contacts"  ORDER BY "spotlight_contacts"."id" ASC LIMIT 1000
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515225017"]]
+  [1m[35m (5.2ms)[0m  commit transaction
+Migrating to AddAvatarToContacts (20160515225018)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  ALTER TABLE "spotlight_contacts" ADD "avatar" varchar
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "spotlight_contacts" ADD "avatar_crop_x" integer[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "spotlight_contacts" ADD "avatar_crop_y" integer
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "spotlight_contacts" ADD "avatar_crop_w" integer[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "spotlight_contacts" ADD "avatar_crop_h" integer
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515225018"]]
+  [1m[35m (2.6ms)[0m  commit transaction
+Migrating to AddLayoutOptionsToExhibit (20160515225019)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  ALTER TABLE "spotlight_exhibits" ADD "searchable" boolean DEFAULT 't'
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "spotlight_exhibits" ADD "layout" varchar[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225019"]]
+  [1m[36m (2.7ms)[0m  [1mcommit transaction[0m
+Migrating to AddPublishedToExhibit (20160515225020)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mALTER TABLE "spotlight_exhibits" ADD "published" boolean DEFAULT 'f'[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "spotlight_exhibits" ADD "published_at" datetime
+Scoped order and limit are ignored, it's forced to be batch order and batch size
+  [1m[36mSpotlight::Exhibit Load (0.2ms)[0m  [1mSELECT  "spotlight_exhibits".* FROM "spotlight_exhibits"  ORDER BY "spotlight_exhibits"."id" ASC LIMIT 1000[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225020"]]
+  [1m[36m (2.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddFeaturedImageToExhibit (20160515225021)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE "spotlight_exhibits" ADD "featured_image" varchar[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225021"]]
+  [1m[36m (2.6ms)[0m  [1mcommit transaction[0m
+Migrating to AddPolymorphicDocumentToSidecars (20160515225022)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE "spotlight_solr_document_sidecars" ADD "document_id" varchar[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "spotlight_solr_document_sidecars" ADD "document_type" varchar
+  [1m[36mSpotlight::SolrDocumentSidecar Load (0.3ms)[0m  [1mSELECT  "spotlight_solr_document_sidecars".* FROM "spotlight_solr_document_sidecars"  ORDER BY "spotlight_solr_document_sidecars"."id" ASC LIMIT 1000[0m
+  [1m[35m (0.5ms)[0m  CREATE TEMPORARY TABLE "aspotlight_solr_document_sidecars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "exhibit_id" integer, "solr_document_id" varchar, "public" boolean DEFAULT 't', "data" text, "created_at" datetime, "updated_at" datetime, "document_id" varchar, "document_type" varchar) 
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_solr_document_sidecars_on_solr_document_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_solr_document_sidecars_on_solr_document_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_solr_document_sidecars_on_exhibit_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_solr_document_sidecars_on_exhibit_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "tindex_aspotlight_solr_document_sidecars_on_solr_document_id" ON "aspotlight_solr_document_sidecars" ("solr_document_id")[0m
+  [1m[35m (0.2ms)[0m  CREATE  INDEX "tindex_aspotlight_solr_document_sidecars_on_exhibit_id" ON "aspotlight_solr_document_sidecars" ("exhibit_id")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "spotlight_solr_document_sidecars"[0m
+  [1m[35m (0.7ms)[0m  DROP TABLE "spotlight_solr_document_sidecars"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "spotlight_solr_document_sidecars" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "exhibit_id" integer, "public" boolean DEFAULT 't', "data" text, "created_at" datetime, "updated_at" datetime, "document_id" varchar, "document_type" varchar) [0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_aspotlight_solr_document_sidecars_on_exhibit_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_aspotlight_solr_document_sidecars_on_exhibit_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_aspotlight_solr_document_sidecars_on_solr_document_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_aspotlight_solr_document_sidecars_on_solr_document_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_spotlight_solr_document_sidecars_on_exhibit_id" ON "spotlight_solr_document_sidecars" ("exhibit_id")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "aspotlight_solr_document_sidecars"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "aspotlight_solr_document_sidecars"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bookmarks_on_document_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bookmarks_on_document_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bookmarks_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bookmarks_on_user_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_bookmarks_on_document_type_and_document_id" ON "bookmarks" ("document_type", "document_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225022"]]
+  [1m[36m (2.8ms)[0m  [1mcommit transaction[0m
+Migrating to AddSpotlightFeaturedImages (20160515225023)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "spotlight_featured_images" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar, "display" boolean, "image" varchar, "source" varchar, "document_global_id" varchar, "image_crop_x" integer, "image_crop_y" integer, "image_crop_w" integer, "image_crop_h" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225023"]]
+  [1m[36m (2.6ms)[0m  [1mcommit transaction[0m
+Migrating to AddFeaturedImageToSpotlightClasses (20160515225024)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "spotlight_searches" ADD "masthead_id" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "spotlight_searches" ADD "thumbnail_id" integer
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "spotlight_exhibits" ADD "masthead_id" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "spotlight_exhibits" ADD "thumbnail_id" integer
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "spotlight_pages" ADD "thumbnail_id" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225024"]]
+  [1m[36m (2.7ms)[0m  [1mcommit transaction[0m
+Migrating to AddDisplayToSpotlightMainNavigations (20160515225025)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "spotlight_main_navigations" ADD "display" boolean DEFAULT 't'[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "spotlight_main_navigations" SET "display" = 't' WHERE "spotlight_main_navigations"."id" IN (SELECT "spotlight_main_navigations"."id" FROM "spotlight_main_navigations"  ORDER BY weight ASC)
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515225025"]]
+  [1m[35m (2.4ms)[0m  commit transaction
+Migrating to AddFieldTypeToCustomFields (20160515225026)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "spotlight_custom_fields" ADD "field_type" varchar
+  [1m[36mSQL (0.0ms)[0m  [1mUPDATE "spotlight_custom_fields" SET "field_type" = 'text'[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225026"]]
+  [1m[36m (2.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddTaggingsCounterCacheToTags (20160515225027)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "tags" ADD "taggings_count" integer DEFAULT 0[0m
+  [1m[35mActsAsTaggableOn::Tag Load (0.0ms)[0m  SELECT  "tags".* FROM "tags"  ORDER BY "tags"."id" ASC LIMIT 1000
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515225027"]]
+  [1m[35m (2.5ms)[0m  commit transaction
+Migrating to AddMissingTaggableIndex (20160515225028)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='taggings_idx' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='taggings_idx' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "index_taggings_on_taggable_id_and_taggable_type_and_context" ON "taggings" ("taggable_id", "taggable_type", "context")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225028"]]
+  [1m[36m (2.5ms)[0m  [1mcommit transaction[0m
+Migrating to ChangeCollationForTagNames (20160515225029)
+  [1m[35m (0.4ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515225029"]]
+  [1m[35m (2.4ms)[0m  commit transaction
+Migrating to ChangeSpotlightSearchesToPublished (20160515225030)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "aspotlight_searches" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "slug" varchar, "scope" varchar, "short_description" text, "long_description" text, "query_params" text, "weight" integer, "published" boolean, "exhibit_id" integer, "created_at" datetime, "updated_at" datetime, "featured_item_id" varchar, "masthead_id" integer, "thumbnail_id" integer) 
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_searches_on_slug_and_scope' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_searches_on_slug_and_scope' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_searches_on_exhibit_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_searches_on_exhibit_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE UNIQUE INDEX "tindex_aspotlight_searches_on_slug_and_scope" ON "aspotlight_searches" ("slug", "scope")[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "tindex_aspotlight_searches_on_exhibit_id" ON "aspotlight_searches" ("exhibit_id")
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "spotlight_searches"[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "spotlight_searches"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spotlight_searches" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "slug" varchar, "scope" varchar, "short_description" text, "long_description" text, "query_params" text, "weight" integer, "published" boolean, "exhibit_id" integer, "created_at" datetime, "updated_at" datetime, "featured_item_id" varchar, "masthead_id" integer, "thumbnail_id" integer) [0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_aspotlight_searches_on_exhibit_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_aspotlight_searches_on_exhibit_id' AND type='index'
+
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_aspotlight_searches_on_slug_and_scope' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_aspotlight_searches_on_slug_and_scope' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_spotlight_searches_on_exhibit_id" ON "spotlight_searches" ("exhibit_id")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_searches_on_exhibit_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_searches_on_exhibit_id' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m  CREATE UNIQUE INDEX "index_spotlight_searches_on_slug_and_scope" ON "spotlight_searches" ("slug", "scope")
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "aspotlight_searches"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "aspotlight_searches"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_searches_on_slug_and_scope' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_searches_on_slug_and_scope' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_searches_on_exhibit_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_searches_on_exhibit_id' AND type='index'
+
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515225030"]]
+  [1m[35m (2.7ms)[0m  commit transaction
+Migrating to RemoveSearchableFromExhibit (20160515225031)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Scoped order and limit are ignored, it's forced to be batch order and batch size
+  [1m[35mSpotlight::Exhibit Load (0.2ms)[0m  SELECT  "spotlight_exhibits".* FROM "spotlight_exhibits" WHERE "spotlight_exhibits"."searchable" = ?  ORDER BY "spotlight_exhibits"."id" ASC LIMIT 1000  [["searchable", "f"]]
+Scoped order and limit are ignored, it's forced to be batch order and batch size
+  [1m[36mSpotlight::Exhibit Load (0.0ms)[0m  [1mSELECT  "spotlight_exhibits".* FROM "spotlight_exhibits" WHERE "spotlight_exhibits"."searchable" = ?  ORDER BY "spotlight_exhibits"."id" ASC LIMIT 1000[0m  [["searchable", "t"]]
+  [1m[35m (0.1ms)[0m  CREATE TEMPORARY TABLE "aspotlight_exhibits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar NOT NULL, "subtitle" varchar, "slug" varchar, "description" text, "created_at" datetime, "updated_at" datetime, "searchable" boolean DEFAULT 't', "layout" varchar, "published" boolean DEFAULT 'f', "published_at" datetime, "featured_image" varchar, "masthead_id" integer, "thumbnail_id" integer) 
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_exhibits_on_slug' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_exhibits_on_slug' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE UNIQUE INDEX "tindex_aspotlight_exhibits_on_slug" ON "aspotlight_exhibits" ("slug")
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "spotlight_exhibits"[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "spotlight_exhibits"
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "spotlight_exhibits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar NOT NULL, "subtitle" varchar, "slug" varchar, "description" text, "created_at" datetime, "updated_at" datetime, "layout" varchar, "published" boolean DEFAULT 'f', "published_at" datetime, "featured_image" varchar, "masthead_id" integer, "thumbnail_id" integer) [0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_aspotlight_exhibits_on_slug' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_aspotlight_exhibits_on_slug' AND type='index'
+
+  [1m[36m (0.3ms)[0m  [1mCREATE UNIQUE INDEX "index_spotlight_exhibits_on_slug" ON "spotlight_exhibits" ("slug")[0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "aspotlight_exhibits"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "aspotlight_exhibits"[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225031"]]
+  [1m[36m (2.8ms)[0m  [1mcommit transaction[0m
+Migrating to AddMetadataToSpotlightResource (20160515225032)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mALTER TABLE "spotlight_resources" ADD "metadata" blob[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225032"]]
+  [1m[36m (2.7ms)[0m  [1mcommit transaction[0m
+Migrating to ChangeSpotlightExhibitPublishedDefault (20160515225033)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "aspotlight_exhibits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar NOT NULL, "subtitle" varchar, "slug" varchar, "description" text, "created_at" datetime, "updated_at" datetime, "layout" varchar, "published" boolean DEFAULT 'f', "published_at" datetime, "featured_image" varchar, "masthead_id" integer, "thumbnail_id" integer) [0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_exhibits_on_slug' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_exhibits_on_slug' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "tindex_aspotlight_exhibits_on_slug" ON "aspotlight_exhibits" ("slug")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "spotlight_exhibits"
+  [1m[36m (0.4ms)[0m  [1mDROP TABLE "spotlight_exhibits"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "spotlight_exhibits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar NOT NULL, "subtitle" varchar, "slug" varchar, "description" text, "created_at" datetime, "updated_at" datetime, "layout" varchar, "published" boolean DEFAULT 'f', "published_at" datetime, "featured_image" varchar, "masthead_id" integer, "thumbnail_id" integer) 
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_aspotlight_exhibits_on_slug' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_aspotlight_exhibits_on_slug' AND type='index'
+[0m
+  [1m[35m (0.4ms)[0m  CREATE UNIQUE INDEX "index_spotlight_exhibits_on_slug" ON "spotlight_exhibits" ("slug")
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "aspotlight_exhibits"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "aspotlight_exhibits"
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515225033"]]
+  [1m[35m (2.5ms)[0m  commit transaction
+Migrating to RemoveDefaultFromSpotlightExhibit (20160515225034)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225034"]]
+  [1m[36m (2.4ms)[0m  [1mcommit transaction[0m
+Migrating to UpdateCustomFieldNames (20160515225035)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSpotlight::CustomField Load (0.2ms)[0m  [1mSELECT  "spotlight_custom_fields".* FROM "spotlight_custom_fields"  ORDER BY "spotlight_custom_fields"."id" ASC LIMIT 1000[0m
+  [1m[35mSpotlight::SolrDocumentSidecar Load (0.1ms)[0m  SELECT  "spotlight_solr_document_sidecars".* FROM "spotlight_solr_document_sidecars"  ORDER BY "spotlight_solr_document_sidecars"."id" ASC LIMIT 1000
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515225035"]]
+  [1m[35m (2.7ms)[0m  commit transaction
+Migrating to AddWeightToExhibits (20160515225036)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "spotlight_exhibits" ADD "weight" integer DEFAULT 50
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515225036"]]
+  [1m[35m (2.4ms)[0m  commit transaction
+Migrating to CreateSpotlightSite (20160515225037)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "spotlight_sites" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "subtitle" varchar, "masthead_id" integer) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515225037"]]
+  [1m[35m (2.6ms)[0m  commit transaction
+Migrating to AddSiteToSpotlightExhibits (20160515225038)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "spotlight_exhibits" ADD "site_id" integer
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_exhibits_on_slug' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_exhibits_on_slug' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_spotlight_exhibits_on_site_id" ON "spotlight_exhibits" ("site_id")
+Scoped order and limit are ignored, it's forced to be batch order and batch size
+  [1m[36mSpotlight::Exhibit Load (0.1ms)[0m  [1mSELECT  "spotlight_exhibits".* FROM "spotlight_exhibits"  ORDER BY "spotlight_exhibits"."id" ASC LIMIT 1000[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225038"]]
+  [1m[36m (2.5ms)[0m  [1mcommit transaction[0m
+Migrating to ChangeRolesToSupportPolymorphicAssociations (20160515225039)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mALTER TABLE "spotlight_roles" ADD "resource_id" integer[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "spotlight_roles" ADD "resource_type" varchar
+  [1m[36mSpotlight::Role Load (0.0ms)[0m  [1mSELECT  "spotlight_roles".* FROM "spotlight_roles"  ORDER BY "spotlight_roles"."id" ASC LIMIT 1000[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_roles_on_exhibit_id_and_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_roles_on_exhibit_id_and_user_id' AND type='index'
+
+  [1m[36m (0.3ms)[0m  [1mDROP INDEX "index_spotlight_roles_on_exhibit_id_and_user_id"[0m
+  [1m[35m (0.1ms)[0m  CREATE TEMPORARY TABLE "aspotlight_roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "exhibit_id" integer, "user_id" integer, "role" varchar, "resource_id" integer, "resource_type" varchar) 
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "spotlight_roles"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "spotlight_roles"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "spotlight_roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "role" varchar, "resource_id" integer, "resource_type" varchar) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "aspotlight_roles"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "aspotlight_roles"[0m
+  [1m[35m (0.1ms)[0m  CREATE UNIQUE INDEX "index_spotlight_roles_on_resource_and_user_id" ON "spotlight_roles" ("resource_type", "resource_id", "user_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160515225039"]]
+  [1m[35m (2.7ms)[0m  commit transaction
+Migrating to AddIndexStatusToResources (20160515225040)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "spotlight_resources" ADD "index_status" integer
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "index_spotlight_resources_on_index_status" ON "spotlight_resources" ("index_status")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225040"]]
+  [1m[36m (2.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateSpotlightExhibitFilters (20160515225041)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "spotlight_filters" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "field" varchar, "value" varchar, "exhibit_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_spotlight_filters_on_exhibit_id" ON "spotlight_filters" ("exhibit_id")
+  [1m[36mSpotlight::Exhibit Load (0.1ms)[0m  [1mSELECT "spotlight_exhibits".* FROM "spotlight_exhibits"  ORDER BY weight ASC[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225041"]]
+  [1m[36m (2.4ms)[0m  [1mcommit transaction[0m
+Migrating to AddReadonlyToCustomFields (20160515225042)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "spotlight_custom_fields" ADD "readonly_field" boolean DEFAULT 'f'[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160515225042"]]
+  [1m[36m (2.4ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bookmarks_on_document_type_and_document_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bookmarks_on_document_type_and_document_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bookmarks_on_document_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bookmarks_on_document_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bookmarks_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bookmarks_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_friendly_id_slugs_on_sluggable_type' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_friendly_id_slugs_on_sluggable_type' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_friendly_id_slugs_on_slug_and_sluggable_type' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_friendly_id_slugs_on_slug_and_sluggable_type' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_friendly_id_slugs_on_sluggable_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_friendly_id_slugs_on_sluggable_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_searches_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_searches_on_user_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_contact_emails_on_confirmation_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_contact_emails_on_confirmation_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_contact_emails_on_email_and_exhibit_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_contact_emails_on_email_and_exhibit_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_contacts_on_exhibit_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_contacts_on_exhibit_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_exhibits_on_site_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_exhibits_on_site_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_exhibits_on_slug' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_exhibits_on_slug' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_filters_on_exhibit_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_filters_on_exhibit_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_locks_on_on_id_and_on_type' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_locks_on_on_id_and_on_type' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_main_navigations_on_exhibit_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_main_navigations_on_exhibit_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_pages_on_slug_and_scope' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_pages_on_slug_and_scope' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_pages_on_parent_page_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_pages_on_parent_page_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_pages_on_exhibit_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_pages_on_exhibit_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_resources_on_index_status' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_resources_on_index_status' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_roles_on_resource_and_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_roles_on_resource_and_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_searches_on_slug_and_scope' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_searches_on_slug_and_scope' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_searches_on_exhibit_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_searches_on_exhibit_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_spotlight_solr_document_sidecars_on_exhibit_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_spotlight_solr_document_sidecars_on_exhibit_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_taggings_on_taggable_id_and_taggable_type_and_context' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_taggings_on_taggable_id_and_taggable_type_and_context' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='taggings_idx' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='taggings_idx' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_tags_on_name' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_tags_on_name' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_invited_by_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_invited_by_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_invitation_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_invitation_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_invitations_count' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_invitations_count' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_versions_on_item_type_and_item_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_versions_on_item_type_and_item_id' AND type='index'
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
