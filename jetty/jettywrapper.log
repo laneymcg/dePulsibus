@@ -1,112 +1,102 @@
 0    [main] INFO  org.eclipse.jetty.server.Server  – jetty-8.1.10.v20130312
-73   [main] INFO  org.eclipse.jetty.deploy.providers.ScanningAppProvider  – Deployment monitor /Users/laneymcg1/Sites/dePulsibus/jetty/contexts at interval 0
-88   [main] INFO  org.eclipse.jetty.deploy.DeploymentManager  – Deployable added: /Users/laneymcg1/Sites/dePulsibus/jetty/contexts/solr.xml
-1877 [main] INFO  org.eclipse.jetty.webapp.StandardDescriptorProcessor  – NO JSP Support for /solr, did not find org.apache.jasper.servlet.JspServlet
-2005 [main] INFO  org.apache.solr.servlet.SolrDispatchFilter  – SolrDispatchFilter.init()
-2062 [main] INFO  org.apache.solr.core.SolrResourceLoader  – JNDI not configured for solr (NoInitialContextEx)
-2063 [main] INFO  org.apache.solr.core.SolrResourceLoader  – using system property solr.solr.home: /Users/laneymcg1/Sites/dePulsibus/jetty/solr
-2066 [main] INFO  org.apache.solr.core.SolrResourceLoader  – new SolrResourceLoader for directory: '/Users/laneymcg1/Sites/dePulsibus/jetty/solr/'
-2082 [main] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/contrib/' to classloader
-2082 [main] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/solr-analysis-extras-4.10.4.jar' to classloader
-2083 [main] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/solr-clustering-4.10.4.jar' to classloader
-2084 [main] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/solr-langid-4.10.4.jar' to classloader
-2207 [main] INFO  org.apache.solr.core.ConfigSolr  – Loading container configuration from /Users/laneymcg1/Sites/dePulsibus/jetty/solr/solr.xml
-2655 [main] INFO  org.apache.solr.core.CoresLocator  – Config-defined core root directory: /Users/laneymcg1/Sites/dePulsibus/jetty/solr
-2683 [main] INFO  org.apache.solr.core.CoreContainer  – New CoreContainer 842179210
-2683 [main] INFO  org.apache.solr.core.CoreContainer  – Loading cores into CoreContainer [instanceDir=/Users/laneymcg1/Sites/dePulsibus/jetty/solr/]
-2686 [main] INFO  org.apache.solr.core.CoreContainer  – loading shared library: /Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib
-2688 [main] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/contrib/' to classloader
-2688 [main] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/solr-analysis-extras-4.10.4.jar' to classloader
-2689 [main] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/solr-clustering-4.10.4.jar' to classloader
-2689 [main] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/solr-langid-4.10.4.jar' to classloader
-2715 [main] INFO  org.apache.solr.handler.component.HttpShardHandlerFactory  – Setting socketTimeout to: 0
-2715 [main] INFO  org.apache.solr.handler.component.HttpShardHandlerFactory  – Setting urlScheme to: null
-2718 [main] INFO  org.apache.solr.handler.component.HttpShardHandlerFactory  – Setting connTimeout to: 0
-2718 [main] INFO  org.apache.solr.handler.component.HttpShardHandlerFactory  – Setting maxConnectionsPerHost to: 20
-2719 [main] INFO  org.apache.solr.handler.component.HttpShardHandlerFactory  – Setting corePoolSize to: 0
-2719 [main] INFO  org.apache.solr.handler.component.HttpShardHandlerFactory  – Setting maximumPoolSize to: 2147483647
-2719 [main] INFO  org.apache.solr.handler.component.HttpShardHandlerFactory  – Setting maxThreadIdleTime to: 5
-2719 [main] INFO  org.apache.solr.handler.component.HttpShardHandlerFactory  – Setting sizeOfQueue to: -1
-2720 [main] INFO  org.apache.solr.handler.component.HttpShardHandlerFactory  – Setting fairnessPolicy to: false
-2720 [main] INFO  org.apache.solr.handler.component.HttpShardHandlerFactory  – Setting useRetries to: false
-3171 [main] INFO  org.apache.solr.update.UpdateShardHandler  – Creating UpdateShardHandler HTTP client with params: socketTimeout=0&connTimeout=0&retry=true
-3173 [main] INFO  org.apache.solr.logging.LogWatcher  – SLF4J impl is org.slf4j.impl.Log4jLoggerFactory
-3174 [main] INFO  org.apache.solr.logging.LogWatcher  – Registering Log Listener [Log4j (org.slf4j.impl.Log4jLoggerFactory)]
-3175 [main] INFO  org.apache.solr.core.CoreContainer  – Host Name: 
-3275 [main] INFO  org.apache.solr.core.CoresLocator  – Looking for core definitions underneath /Users/laneymcg1/Sites/dePulsibus/jetty/solr
-3289 [main] INFO  org.apache.solr.core.CoresLocator  – Found core blacklight-core in /Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/
-3297 [main] INFO  org.apache.solr.core.CoresLocator  – Found 1 core definitions
-3305 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrResourceLoader  – new SolrResourceLoader for directory: '/Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/'
-3351 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrConfig  – Adding specified lib dirs to ClassLoader
-3352 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/contrib/analysis-extras/lib/icu4j-53.1.jar' to classloader
-3352 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/contrib/analysis-extras/lib/morfologik-fsa-1.7.1.jar' to classloader
-3352 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/contrib/analysis-extras/lib/morfologik-polish-1.7.1.jar' to classloader
-3352 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/contrib/analysis-extras/lib/morfologik-stemming-1.7.1.jar' to classloader
-3353 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/contrib/analysis-extras/lucene-libs/lucene-analyzers-icu-4.10.4.jar' to classloader
-3353 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/contrib/analysis-extras/lucene-libs/lucene-analyzers-morfologik-4.10.4.jar' to classloader
-3353 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/contrib/analysis-extras/lucene-libs/lucene-analyzers-smartcn-4.10.4.jar' to classloader
-3353 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/contrib/analysis-extras/lucene-libs/lucene-analyzers-stempel-4.10.4.jar' to classloader
-3432 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrConfig  – Using Lucene MatchVersion: 4.10.3
-3495 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.Config  – Loaded SolrConfig: solrconfig.xml
-3499 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.schema.IndexSchema  – Reading Solr Schema from /Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/conf/schema.xml
-3529 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.schema.IndexSchema  – [blacklight-core] Schema name=Hydra
-3708 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.schema.IndexSchema  – unique key field: id
-3957 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.CoreContainer  – Creating SolrCore 'blacklight-core' using configuration from instancedir /Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/
-3978 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrCore  – solr.StandardDirectoryFactory
-3982 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrCore  – [blacklight-core] Opening new SolrCore at /Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/, dataDir=/Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data/
-3983 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrCore  – JMX monitoring not detected for core: blacklight-core
-3996 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.CachingDirectoryFactory  – return new directory for /Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data
-4053 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrCore  – New index directory detected: old=null new=/Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data/index/
-4054 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.CachingDirectoryFactory  – return new directory for /Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data/index
-4176 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrCore  – no updateRequestProcessorChain defined as default, creating implicit default
-4184 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – created /update: org.apache.solr.handler.UpdateRequestHandler
-4184 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – created /update/json: org.apache.solr.handler.UpdateRequestHandler
-4184 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – created /update/csv: org.apache.solr.handler.UpdateRequestHandler
-4185 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – created /update/json/docs: org.apache.solr.handler.UpdateRequestHandler
-4189 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – created search: solr.SearchHandler
-4190 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – created /get: solr.RealTimeGetHandler
-4191 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – adding lazy requestHandler: solr.ReplicationHandler
-4191 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – created /replication: solr.ReplicationHandler
-4191 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – adding lazy requestHandler: solr.FieldAnalysisRequestHandler
-4192 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – created /analysis/field: solr.FieldAnalysisRequestHandler
-4192 [coreLoadExecutor-5-thread-1] WARN  org.apache.solr.core.RequestHandlers  – Multiple requestHandler registered to the same name: /update ignoring: org.apache.solr.handler.UpdateRequestHandler
-4192 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – created /update: solr.UpdateRequestHandler
-4193 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – created /admin/: org.apache.solr.handler.admin.AdminHandlers
-4194 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – created /admin/ping: solr.PingRequestHandler
-4216 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.handler.loader.XMLLoader  – xsltCacheLifetimeSeconds=60
-4218 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.handler.loader.XMLLoader  – xsltCacheLifetimeSeconds=60
-4219 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.handler.loader.XMLLoader  – xsltCacheLifetimeSeconds=60
-4220 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.handler.loader.XMLLoader  – xsltCacheLifetimeSeconds=60
-4221 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.handler.loader.XMLLoader  – xsltCacheLifetimeSeconds=60
-4234 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrCore  – Hard AutoCommit: disabled
-4234 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrCore  – Soft AutoCommit: disabled
-4270 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrCore  – SolrDeletionPolicy.onInit: commits: num=1
+19   [main] INFO  org.eclipse.jetty.deploy.providers.ScanningAppProvider  – Deployment monitor /Users/laneymcg1/Sites/dePulsibus/jetty/contexts at interval 0
+23   [main] INFO  org.eclipse.jetty.deploy.DeploymentManager  – Deployable added: /Users/laneymcg1/Sites/dePulsibus/jetty/contexts/solr.xml
+81   [main] INFO  org.eclipse.jetty.webapp.WebInfConfiguration  – Extract jar:file:/Users/laneymcg1/Sites/dePulsibus/jetty/webapps/solr.war!/ to /Users/laneymcg1/Sites/dePulsibus/jetty/solr-webapp/webapp
+1323 [main] INFO  org.eclipse.jetty.webapp.StandardDescriptorProcessor  – NO JSP Support for /solr, did not find org.apache.jasper.servlet.JspServlet
+1363 [main] INFO  org.apache.solr.servlet.SolrDispatchFilter  – SolrDispatchFilter.init()
+1377 [main] INFO  org.apache.solr.core.SolrResourceLoader  – JNDI not configured for solr (NoInitialContextEx)
+1378 [main] INFO  org.apache.solr.core.SolrResourceLoader  – using system property solr.solr.home: /Users/laneymcg1/Sites/dePulsibus/jetty/solr
+1378 [main] INFO  org.apache.solr.core.SolrResourceLoader  – new SolrResourceLoader for directory: '/Users/laneymcg1/Sites/dePulsibus/jetty/solr/'
+1381 [main] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/contrib/' to classloader
+1381 [main] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/solr-analysis-extras-4.10.4.jar' to classloader
+1381 [main] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/solr-clustering-4.10.4.jar' to classloader
+1381 [main] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/solr-langid-4.10.4.jar' to classloader
+1490 [main] INFO  org.apache.solr.core.ConfigSolr  – Loading container configuration from /Users/laneymcg1/Sites/dePulsibus/jetty/solr/solr.xml
+1539 [main] INFO  org.apache.solr.core.CoresLocator  – Config-defined core root directory: /Users/laneymcg1/Sites/dePulsibus/jetty/solr
+1543 [main] INFO  org.apache.solr.core.CoreContainer  – New CoreContainer 1652807864
+1545 [main] INFO  org.apache.solr.core.CoreContainer  – Loading cores into CoreContainer [instanceDir=/Users/laneymcg1/Sites/dePulsibus/jetty/solr/]
+1545 [main] INFO  org.apache.solr.core.CoreContainer  – loading shared library: /Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib
+1545 [main] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/contrib/' to classloader
+1546 [main] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/solr-analysis-extras-4.10.4.jar' to classloader
+1546 [main] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/solr-clustering-4.10.4.jar' to classloader
+1546 [main] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/solr-langid-4.10.4.jar' to classloader
+1560 [main] INFO  org.apache.solr.handler.component.HttpShardHandlerFactory  – Setting socketTimeout to: 0
+1560 [main] INFO  org.apache.solr.handler.component.HttpShardHandlerFactory  – Setting urlScheme to: null
+1567 [main] INFO  org.apache.solr.handler.component.HttpShardHandlerFactory  – Setting connTimeout to: 0
+1567 [main] INFO  org.apache.solr.handler.component.HttpShardHandlerFactory  – Setting maxConnectionsPerHost to: 20
+1567 [main] INFO  org.apache.solr.handler.component.HttpShardHandlerFactory  – Setting corePoolSize to: 0
+1568 [main] INFO  org.apache.solr.handler.component.HttpShardHandlerFactory  – Setting maximumPoolSize to: 2147483647
+1568 [main] INFO  org.apache.solr.handler.component.HttpShardHandlerFactory  – Setting maxThreadIdleTime to: 5
+1568 [main] INFO  org.apache.solr.handler.component.HttpShardHandlerFactory  – Setting sizeOfQueue to: -1
+1569 [main] INFO  org.apache.solr.handler.component.HttpShardHandlerFactory  – Setting fairnessPolicy to: false
+1569 [main] INFO  org.apache.solr.handler.component.HttpShardHandlerFactory  – Setting useRetries to: false
+1705 [main] INFO  org.apache.solr.update.UpdateShardHandler  – Creating UpdateShardHandler HTTP client with params: socketTimeout=0&connTimeout=0&retry=true
+1707 [main] INFO  org.apache.solr.logging.LogWatcher  – SLF4J impl is org.slf4j.impl.Log4jLoggerFactory
+1707 [main] INFO  org.apache.solr.logging.LogWatcher  – Registering Log Listener [Log4j (org.slf4j.impl.Log4jLoggerFactory)]
+1708 [main] INFO  org.apache.solr.core.CoreContainer  – Host Name: 
+2026 [main] INFO  org.apache.solr.core.CoresLocator  – Looking for core definitions underneath /Users/laneymcg1/Sites/dePulsibus/jetty/solr
+2032 [main] INFO  org.apache.solr.core.CoresLocator  – Found core blacklight-core in /Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/
+2034 [main] INFO  org.apache.solr.core.CoresLocator  – Found 1 core definitions
+2035 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrResourceLoader  – new SolrResourceLoader for directory: '/Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/'
+2051 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrConfig  – Adding specified lib dirs to ClassLoader
+2052 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/contrib/analysis-extras/lib/icu4j-53.1.jar' to classloader
+2052 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/contrib/analysis-extras/lib/morfologik-fsa-1.7.1.jar' to classloader
+2052 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/contrib/analysis-extras/lib/morfologik-polish-1.7.1.jar' to classloader
+2052 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/contrib/analysis-extras/lib/morfologik-stemming-1.7.1.jar' to classloader
+2053 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/contrib/analysis-extras/lucene-libs/lucene-analyzers-icu-4.10.4.jar' to classloader
+2053 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/contrib/analysis-extras/lucene-libs/lucene-analyzers-morfologik-4.10.4.jar' to classloader
+2053 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/contrib/analysis-extras/lucene-libs/lucene-analyzers-smartcn-4.10.4.jar' to classloader
+2053 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrResourceLoader  – Adding 'file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr/lib/contrib/analysis-extras/lucene-libs/lucene-analyzers-stempel-4.10.4.jar' to classloader
+2076 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrConfig  – Using Lucene MatchVersion: 4.10.3
+2130 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.Config  – Loaded SolrConfig: solrconfig.xml
+2136 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.schema.IndexSchema  – Reading Solr Schema from /Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/conf/schema.xml
+2160 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.schema.IndexSchema  – [blacklight-core] Schema name=Hydra
+2300 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.schema.IndexSchema  – unique key field: id
+2365 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.CoreContainer  – Creating SolrCore 'blacklight-core' using configuration from instancedir /Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/
+2378 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrCore  – solr.StandardDirectoryFactory
+2382 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrCore  – [blacklight-core] Opening new SolrCore at /Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/, dataDir=/Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data/
+2382 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrCore  – JMX monitoring not detected for core: blacklight-core
+2389 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.CachingDirectoryFactory  – return new directory for /Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data
+2394 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrCore  – New index directory detected: old=null new=/Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data/index/
+2395 [coreLoadExecutor-5-thread-1] WARN  org.apache.solr.core.SolrCore  – [blacklight-core] Solr index directory '/Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data/index' doesn't exist. Creating new index...
+2402 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.CachingDirectoryFactory  – return new directory for /Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data/index
+2475 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrCore  – SolrDeletionPolicy.onCommit: commits: num=1
 	commit{dir=/Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data/index,segFN=segments_1,generation=1}
-4270 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrCore  – newest commit generation = 1
-4278 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.search.SolrIndexSearcher  – Opening Searcher@2e4d882b[blacklight-core] main
-4283 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.rest.ManagedResourceStorage  – File-based storage initialized to use dir: /Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/conf
-4283 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.rest.RestManager  – Initializing RestManager with initArgs: {storageDir=/Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/conf}
-4290 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.rest.ManagedResourceStorage  – Reading _rest_managed.json using file:dir=/Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/conf
-4315 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.rest.ManagedResourceStorage  – Loaded LinkedHashMap at path _rest_managed.json using file:dir=/Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/conf
-4315 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.rest.ManagedResource  – Loaded initArgs {} for /rest/managed
-4316 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.rest.RestManager  – Initializing 0 registered ManagedResources
-4334 [searcherExecutor-6-thread-1] INFO  org.apache.solr.core.SolrCore  – [blacklight-core] Registered new searcher Searcher@2e4d882b[blacklight-core] main{StandardDirectoryReader(segments_1:1:nrt)}
-4334 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.CoreContainer  – registering core: blacklight-core
-4336 [main] INFO  org.apache.solr.servlet.SolrDispatchFilter  – user.dir=/Users/laneymcg1/Sites/dePulsibus/jetty
-4336 [main] INFO  org.apache.solr.servlet.SolrDispatchFilter  – SolrDispatchFilter.init() done
-4390 [main] INFO  org.eclipse.jetty.server.AbstractConnector  – Started SocketConnector@0.0.0.0:8983
-4106246 [Thread-0] INFO  org.eclipse.jetty.server.Server  – Graceful shutdown SocketConnector@0.0.0.0:8983
-4106247 [Thread-0] INFO  org.eclipse.jetty.server.Server  – Graceful shutdown o.e.j.w.WebAppContext{/solr,file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr-webapp/webapp/},/Users/laneymcg1/Sites/dePulsibus/jetty/webapps/solr.war
-4107248 [Thread-0] INFO  org.apache.solr.core.CoreContainer  – Shutting down CoreContainer instance=842179210
-4107249 [Thread-0] INFO  org.apache.solr.core.SolrCore  – [blacklight-core]  CLOSING SolrCore org.apache.solr.core.SolrCore@3a0bfe50
-4107250 [Thread-0] INFO  org.apache.solr.update.UpdateHandler  – closing DirectUpdateHandler2{commits=0,autocommits=0,soft autocommits=0,optimizes=0,rollbacks=0,expungeDeletes=0,docsPending=0,adds=0,deletesById=0,deletesByQuery=0,errors=0,cumulative_adds=0,cumulative_deletesById=0,cumulative_deletesByQuery=0,cumulative_errors=0,transaction_logs_total_size=0,transaction_logs_total_number=0}
-4107251 [Thread-0] INFO  org.apache.solr.update.SolrCoreState  – Closing SolrCoreState
-4107251 [Thread-0] INFO  org.apache.solr.update.DefaultSolrCoreState  – SolrCoreState ref count has reached 0 - closing IndexWriter
-4107251 [Thread-0] INFO  org.apache.solr.update.DefaultSolrCoreState  – closing IndexWriter with IndexWriterCloser
-4107258 [Thread-0] INFO  org.apache.solr.core.SolrCore  – [blacklight-core] Closing main searcher on request.
-4107260 [Thread-0] INFO  org.apache.solr.core.CachingDirectoryFactory  – Closing StandardDirectoryFactory - 2 directories currently being tracked
-4107263 [Thread-0] INFO  org.apache.solr.core.CachingDirectoryFactory  – looking to close /Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data [CachedDir<<refCount=0;path=/Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data;done=false>>]
-4107264 [Thread-0] INFO  org.apache.solr.core.CachingDirectoryFactory  – Closing directory: /Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data
-4107264 [Thread-0] INFO  org.apache.solr.core.CachingDirectoryFactory  – looking to close /Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data/index [CachedDir<<refCount=0;path=/Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data/index;done=false>>]
-4107264 [Thread-0] INFO  org.apache.solr.core.CachingDirectoryFactory  – Closing directory: /Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data/index
-4107266 [Thread-0] INFO  org.eclipse.jetty.server.handler.ContextHandler  – stopped o.e.j.w.WebAppContext{/solr,file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr-webapp/webapp/},/Users/laneymcg1/Sites/dePulsibus/jetty/webapps/solr.war
+2476 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrCore  – newest commit generation = 1
+2522 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrCore  – no updateRequestProcessorChain defined as default, creating implicit default
+2526 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – created /update: org.apache.solr.handler.UpdateRequestHandler
+2527 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – created /update/json: org.apache.solr.handler.UpdateRequestHandler
+2527 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – created /update/csv: org.apache.solr.handler.UpdateRequestHandler
+2527 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – created /update/json/docs: org.apache.solr.handler.UpdateRequestHandler
+2530 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – created search: solr.SearchHandler
+2531 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – created /get: solr.RealTimeGetHandler
+2531 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – adding lazy requestHandler: solr.ReplicationHandler
+2531 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – created /replication: solr.ReplicationHandler
+2531 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – adding lazy requestHandler: solr.FieldAnalysisRequestHandler
+2531 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – created /analysis/field: solr.FieldAnalysisRequestHandler
+2532 [coreLoadExecutor-5-thread-1] WARN  org.apache.solr.core.RequestHandlers  – Multiple requestHandler registered to the same name: /update ignoring: org.apache.solr.handler.UpdateRequestHandler
+2532 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – created /update: solr.UpdateRequestHandler
+2533 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – created /admin/: org.apache.solr.handler.admin.AdminHandlers
+2534 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.RequestHandlers  – created /admin/ping: solr.PingRequestHandler
+2545 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.handler.loader.XMLLoader  – xsltCacheLifetimeSeconds=60
+2547 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.handler.loader.XMLLoader  – xsltCacheLifetimeSeconds=60
+2547 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.handler.loader.XMLLoader  – xsltCacheLifetimeSeconds=60
+2548 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.handler.loader.XMLLoader  – xsltCacheLifetimeSeconds=60
+2548 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.handler.loader.XMLLoader  – xsltCacheLifetimeSeconds=60
+2560 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrCore  – Hard AutoCommit: disabled
+2560 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrCore  – Soft AutoCommit: disabled
+2570 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrCore  – SolrDeletionPolicy.onInit: commits: num=1
+	commit{dir=/Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data/index,segFN=segments_1,generation=1}
+2570 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.SolrCore  – newest commit generation = 1
+2577 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.search.SolrIndexSearcher  – Opening Searcher@164c7373[blacklight-core] main
+2583 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.rest.ManagedResourceStorage  – File-based storage initialized to use dir: /Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/conf
+2583 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.rest.RestManager  – Initializing RestManager with initArgs: {storageDir=/Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/conf}
+2595 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.rest.ManagedResourceStorage  – Reading _rest_managed.json using file:dir=/Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/conf
+2599 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.rest.ManagedResourceStorage  – Loaded LinkedHashMap at path _rest_managed.json using file:dir=/Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/conf
+2599 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.rest.ManagedResource  – Loaded initArgs {} for /rest/managed
+2600 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.rest.RestManager  – Initializing 0 registered ManagedResources
+2612 [coreLoadExecutor-5-thread-1] INFO  org.apache.solr.core.CoreContainer  – registering core: blacklight-core
+2612 [searcherExecutor-6-thread-1] INFO  org.apache.solr.core.SolrCore  – [blacklight-core] Registered new searcher Searcher@164c7373[blacklight-core] main{StandardDirectoryReader(segments_1:1:nrt)}
+2614 [main] INFO  org.apache.solr.servlet.SolrDispatchFilter  – user.dir=/Users/laneymcg1/Sites/dePulsibus/jetty
+2615 [main] INFO  org.apache.solr.servlet.SolrDispatchFilter  – SolrDispatchFilter.init() done
+2641 [main] INFO  org.eclipse.jetty.server.AbstractConnector  – Started SocketConnector@0.0.0.0:8983
