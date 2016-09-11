@@ -95,3 +95,18 @@
 4941 [main] INFO  org.apache.solr.servlet.SolrDispatchFilter  – user.dir=/Users/laneymcg1/Sites/dePulsibus/jetty
 4941 [main] INFO  org.apache.solr.servlet.SolrDispatchFilter  – SolrDispatchFilter.init() done
 4980 [main] INFO  org.eclipse.jetty.server.AbstractConnector  – Started SocketConnector@0.0.0.0:8983
+3022453 [Thread-0] INFO  org.eclipse.jetty.server.Server  – Graceful shutdown SocketConnector@0.0.0.0:8983
+3022457 [Thread-0] INFO  org.eclipse.jetty.server.Server  – Graceful shutdown o.e.j.w.WebAppContext{/solr,file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr-webapp/webapp/},/Users/laneymcg1/Sites/dePulsibus/jetty/webapps/solr.war
+3023460 [Thread-0] INFO  org.apache.solr.core.CoreContainer  – Shutting down CoreContainer instance=997055773
+3023461 [Thread-0] INFO  org.apache.solr.core.SolrCore  – [blacklight-core]  CLOSING SolrCore org.apache.solr.core.SolrCore@2f3eccc1
+3023461 [Thread-0] INFO  org.apache.solr.update.UpdateHandler  – closing DirectUpdateHandler2{commits=0,autocommits=0,soft autocommits=0,optimizes=0,rollbacks=0,expungeDeletes=0,docsPending=0,adds=0,deletesById=0,deletesByQuery=0,errors=0,cumulative_adds=0,cumulative_deletesById=0,cumulative_deletesByQuery=0,cumulative_errors=0,transaction_logs_total_size=8955,transaction_logs_total_number=10}
+3023462 [Thread-0] INFO  org.apache.solr.update.SolrCoreState  – Closing SolrCoreState
+3023462 [Thread-0] INFO  org.apache.solr.update.DefaultSolrCoreState  – SolrCoreState ref count has reached 0 - closing IndexWriter
+3023463 [Thread-0] INFO  org.apache.solr.update.DefaultSolrCoreState  – closing IndexWriter with IndexWriterCloser
+3023476 [Thread-0] INFO  org.apache.solr.core.SolrCore  – [blacklight-core] Closing main searcher on request.
+3023481 [Thread-0] INFO  org.apache.solr.core.CachingDirectoryFactory  – Closing StandardDirectoryFactory - 2 directories currently being tracked
+3023486 [Thread-0] INFO  org.apache.solr.core.CachingDirectoryFactory  – looking to close /Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data/index [CachedDir<<refCount=0;path=/Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data/index;done=false>>]
+3023487 [Thread-0] INFO  org.apache.solr.core.CachingDirectoryFactory  – Closing directory: /Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data/index
+3023487 [Thread-0] INFO  org.apache.solr.core.CachingDirectoryFactory  – looking to close /Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data [CachedDir<<refCount=0;path=/Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data;done=false>>]
+3023487 [Thread-0] INFO  org.apache.solr.core.CachingDirectoryFactory  – Closing directory: /Users/laneymcg1/Sites/dePulsibus/jetty/solr/blacklight-core/data
+3023488 [Thread-0] INFO  org.eclipse.jetty.server.handler.ContextHandler  – stopped o.e.j.w.WebAppContext{/solr,file:/Users/laneymcg1/Sites/dePulsibus/jetty/solr-webapp/webapp/},/Users/laneymcg1/Sites/dePulsibus/jetty/webapps/solr.war
